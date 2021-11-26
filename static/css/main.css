@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css?family=Sacramento');
+
+* {
+    font-weight: 100;
+    font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+}
+
+h1, h2 {
+    font-size: 2em;
+    margin: .5em 0;
+}
+h3, h4, h5 {
+    font-size: 1.6em;
+    margin: .5em 0;
+}
+
+.marchen {
+    font-family: 'Sacramento', cursive;
+}
+
+img {
+    max-width: 100%;
+}
+
+#logo {
+    max-width: 200px;
+    max-height: 100%;
+}
+
+#logo > img {
+    vertical-align: middle;
+}
+
+#main_nav {
+    z-index: 999;
+}
+
+#main_nav ul li a {
+    color:#312f66;
+}
+
+#slide_out {
+    background-color: #fff;
+}
+
+#slide_out li {
+    border-bottom: solid 1px #edeef7;
+}
+
+#Blog {
+    margin: 3em 0;
+}
+
+#Pagenate {
+    margin-bottom: 3em;
+}
+main {
+    padding: 3rem 0;
+}
+
+section {
+    padding: 2rem 0;
+}
+
+.anchor {
+    position: relative;
+    padding-left: 55px;
+    z-index: 0;
+}
+
+.anchor::before {
+    content: '';
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(../img/blog/anchor.png);
+}
+
+.anchor span {
+    display: inline;
+}
+
+.anchor span::before, .anchor span::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    width: 300px;
+    height: 2px;
+    z-index: -1;
+}
+
+.anchor span::before {
+    left: 50px;
+    background-color: rgb(35, 219, 173);
+}
+
+.anchor span::after {
+    left: 0;
+    background-color: rgba(111, 138, 242);
+}
+
+.cross_frame {
+    position: relative;
+    padding: 2em !important;
+}
+
+.form label {
+    color: #000;
+    font-weight: 500;
+}
+
+.cross_frame .cross::before, .cross_frame .cross::after {
+    content: '';
+    position: absolute;
+    display: block;
+    background-color: #dde1eb;
+}
+
+.cross_frame .cross.c1::before, .cross_frame .cross.c1::after {
+    background-color: #b490f3;
+}
+
+.cross_frame .cross::before {
+    top: 0;
+    left: -50px;
+    width: calc(100% + 100px);
+    height: 1px;
+}
+.cross_frame .cross:nth-child(2)::before {
+    top: 100%;
+    left: -25px;
+    width: calc(100% + 100px);
+    height: 1px;
+}
+
+.cross_frame .cross::after {
+    top: -50px;
+    left: 0;
+    width: 1px;
+    height: calc(100% + 100px);
+}
+.cross_frame .cross:nth-child(2)::after {
+    top: -25px;
+    left: 100%;
+    width: 1px;
+    height: calc(100% + 100px);
+}
+.flat_frame {
+    color: #fff;
+    background-color: #717171;
+    padding: .5em;
+}
+.flat_frame .sep {
+    border-right: solid 1px #9e9696;
+}
+.select-dropdown {
+    font-family:"Yu Gothic", "游ゴシック", YuGothic, "游ゴシック体";
+}
+.btn_color_1 {
+    background-color: #6678b2;
+}
+.alert::placeholder {
+    color: #ff6200;
+    font-weight: 500;
+}
+.normal::placeholder {
+    color: #a89b92;
+    font-weight: 100;
+}
+span.badge {
+    color: #fff;
+}
+.bthumbnail {
+    margin-bottom: 1em;
+    padding: .5em 1em;
+    background-color: #f9f9f9;
+}
+.editormd-dialog {
+    height: auto !important;
+}
+.bs {
+    margin-bottom: 3em;
+}
+select {
+    display: block;
+}
+@keyframes bg_mover {
+    0% {
+        background-position: 50% 0%;
+    }
+    50% {
+        background-position: 50% 100%;
+    }
+    100% {
+        background-position: 50% 0%;
+    }
+}
+@keyframes scroll {
+    0% {
+      transform: translate(0, 0);
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    80% {
+      transform: translate(0, 20px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        width: 95%;
+    }
+    .cross_frame {
+        padding: .5em !important;
+    }
+    .cross_frame .cross::before {
+        left: -15px;
+        width: calc(100% + 30px);
+    }
+    .cross_frame .cross:nth-child(2)::before {
+        left: -7.25px;
+        width: calc(100% + 30px);
+    }
+    
+    .cross_frame .cross::after {
+        top: -15px;
+        height: calc(100% + 30px);
+    }
+    .cross_frame .cross:nth-child(2)::after {
+        top: -7.25px;
+        height: calc(100% + 30px);
+    }
+    .tag_box {
+        margin: 1.5em 0;
+    }
+}
+@media screen and (max-width: 600px) {
+    .anchor span::before, .anchor span::after {
+        width: 220px;
+    }
+    .cross_frame .cross::before {
+        left: -10px;
+        width: calc(100% + 20px);
+    }
+    .cross_frame .cross:nth-child(2)::before {
+        left: -5px;
+        width: calc(100% + 20px);
+    }
+    .cross_frame .cross::after {
+        top: -10px;
+        height: calc(100% + 20px);
+    }
+    .cross_frame .cross:nth-child(2)::after {
+        top: -5px;
+        height: calc(100% + 20px);
+    }
+    #Sidebar {
+        margin-top: 2em;
+    }
+}

@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/materialize.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body>
+    <div id="main_nav" class="navbar-fixed">
+        <nav class="white z-depth-3">
+            <div class="nav-wrapper container black-text text-darken-4">
+                <a href="/" id="logo" class="brand-logo"><img src="{% static 'img/blog/logo.png' %}" alt="KUJIRA's blog"></a>
+                <a href="#" data-target="slide_out" class="sidenav-trigger"><i class="material-icons black-text text-darken-4">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                  {% if user.is_authenticated %}
+                  <li><a class="waves-effect" href="{% url 'blog:admin' %}">投稿</a></li>
+                  <li><a class="waves-effect" href="{% url 'blog:tag_register' %}">タグ登録</a></li>
+                  <li><a class="waves-effect" href="{% url 'blog:logout' %}">ログアウト</a></li>
+                  {% else %}
+                  <li><a class="waves-effect" href="{% url 'blog:login' %}">ログイン</a></li>
+                  {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <ul id="slide_out" class="sidenav sidenav-fixed hide-on-large-only">
+        {% if user.is_authenticated %}
+        <li><a class="waves-effect" href="{% url 'blog:admin' %}">投稿</a></li>
+        <li><a class="waves-effect" href="{% url 'blog:tag_register' %}">タグ登録</a></li>
+        <li><a class="waves-effect" href="{% url 'blog:logout' %}">ログアウト</a></li>
+        {% else %}
+        <li><a class="waves-effect" href="{% url 'blog:login' %}">ログイン</a></li>
+        {% endif %}
+    </ul>
+            
+    {% block content %}{% endblock %}
+    <footer class="page-footer grey lighten-5 black-text text-darken-4 marchen">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="marchen">Footer Content</h5>
+              <p class="grey-text text-lighten-4"></p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="marchen">Links</h5>
+              <ul class="marchen">
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright grey lighten-5 black-text text-darken-4">
+          <div class="container marchen center-align">
+          © 2021 Copyright
+          </div>
+        </div>
+      </footer>
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+  </body>
+</html>

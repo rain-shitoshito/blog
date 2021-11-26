@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <h2 class="marchen anchor"><span></span>Login</h2>
+        <div class="col s12">
+            <form action="" method="POST" class="form col s12">
+                {{ form.non_field_errors }}
+                {% for field in form %}
+                <div class="row">
+                  <div class="input-field col s12">
+                    {{ field }}
+                    {{ field.errors }}
+                    <label for="name">{{ field.label_tag }}</label>
+                  </div>
+                </div>
+                {% endfor %}
+                <div class="row center-align">
+                    <button type="submit" class="btn waves-effect waves-light btn-large btn_color_1" type="button" name="action">ログイン<i class="material-icons right">login</i></button>
+                </div>
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

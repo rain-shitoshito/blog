@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<main id="Blog">
+    <div class="container">
+        <div class="row">
+            <div id="Content" class="col m7 s12 cross_frame">
+                <span class="cross"></span>
+                <span class="cross"></span>
+                {% for post in posts %}
+                <article class="bthumbnail">
+                    <h5>{{ post.title }}</h5>
+                    <p>{{ post.caption }}</p>
+                    <div class="tag_box">
+                    {% for tag in post.tags %}
+                        <a href="{% url 'blog:top' %}?tag={{ tag.name }}" class="waves-effect waves-light btn-small">{{ tag.name }}</a>
+                    {% endfor %}
+                    </div>
+                    <p class="right-align"><a href="{% url 'blog:detail' post.id %}" class="waves-effect waves-light btn-small blue lighten-1">続きを見る</a></p>
+                </article>
+                {% endfor %}
+            </div>
+            <div id="Sidebar" class="col m3 offset-m2 s12 cross_frame">
+                <span class="cross"></span>
+                <span class="cross"></span>
+                <div>
+                    <h5 class="marchen">Archive</h5>
+                    <ul>
+                        {% for date in archive_date %}
+                        <li><a href="{% url 'blog:top' %}?archive={{ date }}">{{ date }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="marchen">Tag</h5>
+                    <ul>
+                        {% for tag_list in tags_list %}
+                        {% for tag in tag_list.tags %}
+                        <li><a href="{% url 'blog:top' %}?tag={{ tag.name }}">{{ tag.name }}({{ tag_list.count }})</a></li>
+                        {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div id="Pagenate" class="container">
+    <ul class="pagination">
+        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active blue darken-1"><a href="#!">1</a></li>
+        <li class="waves-effect blue darken-1"><a href="#!">2</a></li>
+        <li class="waves-effect blue darken-1"><a href="#!">3</a></li>
+        <li class="waves-effect blue darken-1"><a href="#!">4</a></li>
+        <li class="waves-effect blue darken-1"><a href="#!">5</a></li>
+        <li class="waves-effect blue darken-1"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
+</div>
+{% endblock %}

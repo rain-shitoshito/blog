@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <h2 class="marchen anchor"><span></span>Tag Register</h2>
+        <div class="col s12">
+            <form action="" method="POST" enctype="multipart/form-data" class="form col s12">
+                {{ form.non_field_errors }}
+                <div class="row">
+                  {{ form.media }}
+                  {{ form.as_p }}
+                </div>
+                <div class="row center-align">
+                    <button type="submit" class="btn waves-effect waves-light btn-large btn_color_1" type="button" name="action">タグ登録</button>
+                </div>
+                {% csrf_token %}
+            </form>
+        </div>
+        <div class="col s12 cross_frame bs">
+          <span class="cross"></span>
+          <span class="cross"></span>
+          <h3>登録されたタグ一覧</h3>
+            {% for tag in tag_list %}
+              <span class="btn-small blue lighten-1">{{ tag.name }}</span>
+            {% endfor %}
+          </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
