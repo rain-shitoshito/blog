@@ -71,7 +71,7 @@ class Content(models.Model):
         INNER JOIN blog_content AS content ON sr_content.content_id = content.id
         INNER JOIN blog_tagmap AS tagmap ON content.id = tagmap.content_id
         INNER JOIN blog_tag AS tag ON tagmap.tag_id = tag.id 
-        GROUP BY content.id ORDER BY content.id ASC
+        GROUP BY content.id ORDER BY content.id DESC
         ''',[tname]
         )
 
@@ -88,19 +88,21 @@ class Content(models.Model):
         id AS content_id
         FROM
         (
-        (SELECT datetime('%(min_date)s-01 00:00:00') AS dt_min, datetime('%(max_date)s-01 00:00:00') AS dt_max)
+        (SELECT datetime('{}-01 00:00:00') AS dt_min, datetime('{}-01 00:00:00') AS dt_max)
+        '''.format(min_date, max_date) + '''
         LEFT JOIN blog_content
         ON 
-        strftime('%s', dt_min) + strftime('%f', dt_min) - round( strftime('%f', dt_min) ) <= strftime('%s', finished) + strftime('%f', finished) - round( strftime('%f', finished) )
+        strftime('%%s', dt_min) + strftime('%%f', dt_min) - round( strftime('%%f', dt_min) ) <= strftime('%%s', finished) + strftime('%%f', finished) - round( strftime('%%f', finished) )
         AND
-        strftime('%s', dt_max) + strftime('%f', dt_max) - round( strftime('%f', dt_max) ) > strftime('%s', finished) + strftime('%f', finished) - round( strftime('%f', finished) )
+        strftime('%%s', dt_max) + strftime('%%f', dt_max) - round( strftime('%%f', dt_max) ) > strftime('%%s', finished) + strftime('%%f', finished) - round( strftime('%%f', finished) )
         ) AS base_dt)
         AS sr_content
         INNER JOIN blog_content AS content ON sr_content.content_id = content.id
         INNER JOIN blog_tagmap AS tagmap ON content.id = tagmap.content_id
         INNER JOIN blog_tag AS tag ON tagmap.tag_id = tag.id 
-        GROUP BY content.id ORDER BY content.id ASC
-        ''', {"min_date":min_date, "max_date":max_date})
+        GROUP BY content.id ORDER BY content.id DESC
+        '''
+        )
 
 
     @staticmethod

@@ -16,7 +16,12 @@
                         <a href="{% url 'blog:top' %}?tag={{ tag.name }}" class="waves-effect waves-light btn-small">{{ tag.name }}</a>
                     {% endfor %}
                     </div>
-                    <p class="right-align"><a href="{% url 'blog:detail' post.id %}" class="waves-effect waves-light btn-small blue lighten-1">続きを見る</a></p>
+                    <p class="right-align">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'blog:admin' %}?content_id={{ post.id }}" class="waves-effect waves-light btn-small grey darken-1">編集</a>
+                        {% endif %}
+                        <a href="{% url 'blog:detail' post.id %}" class="waves-effect waves-light btn-small blue lighten-1">続きを見る</a>
+                    </p>
                 </article>
                 {% endfor %}
             </div>
@@ -47,13 +52,19 @@
 </main>
 <div id="Pagenate" class="container">
     <ul class="pagination">
-        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-        <li class="active blue darken-1"><a href="#!">1</a></li>
-        <li class="waves-effect blue darken-1"><a href="#!">2</a></li>
-        <li class="waves-effect blue darken-1"><a href="#!">3</a></li>
-        <li class="waves-effect blue darken-1"><a href="#!">4</a></li>
-        <li class="waves-effect blue darken-1"><a href="#!">5</a></li>
-        <li class="waves-effect blue darken-1"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+        {% if posts.has_previous %}
+        <li class="waves-effect blue darken-1"><a href="{% url 'blog:top' %}{{ get_param }}page={{ posts.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+        {% endif %}
+        {% for num in posts.paginator.page_range %}
+            {% if posts.number == num %}
+            <li class="active blue darken-1"><a href="{% url 'blog:top' %}{{ get_param }}page={{ num }}"">{{ num }}</a></li>
+            {% else %}
+            <li class="waves-effect blue darken-1"><a href="{% url 'blog:top' %}{{ get_param }}page={{ num }}">{{ num }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if posts.has_next %}
+        <li class="waves-effect blue darken-1"><a href="{% url 'blog:top' %}{{ get_param }}page={{ posts.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+        {% endif %}
     </ul>
 </div>
 {% endblock %}

@@ -52,6 +52,8 @@ class ContentForm(ModelCustomForm):
         
         self.fields['tags'].choices = tags
 
+    
+
 
 class TagForm(ModelCustomForm):
 
